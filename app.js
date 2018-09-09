@@ -15,7 +15,8 @@ fs.readFile('devices.json', 'utf8', function readFileCallback(err, data){
 
 client.on('connect', function () {
   client.subscribe('send')
-  client.subscribe('toggle')
+  client.subscribe('turn_on')
+  client.subscribe('turn_off')
   client.subscribe('discover_tplink')
 })
 
@@ -33,10 +34,16 @@ client.on('message', function (topic, message) {
         console.log('results: %j', results);
       });
       break;
-    case "toggle":
+    case "turn_on":
         const plug = tp_link.getDevice({host: devices.list[0].host}).then((device)=>{
-        device.getPowerState().then((state) => {console.log(state)})
-        device.togglePowerState()
+        //device.getPowerState().then((state) => {console.log(state)})
+        device.setPowerState(true)
+        });
+        break;
+    case "turn_off":
+        const plug = tp_link.getDevice({host: devices.list[0].host}).then((device)=>{
+        //device.getPowerState().then((state) => {console.log(state)})
+        device.setPowerState(false)
         });
         break;
     case "discover_tplink":
