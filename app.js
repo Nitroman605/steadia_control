@@ -35,13 +35,13 @@ client.on('message', function (topic, message) {
       });
       break;
     case "turn_on":
-        const plug = tp_link.getDevice({host: devices.list[0].host}).then((device)=>{
+        tp_link.getDevice({host: devices.list[0].host}).then((device)=>{
         //device.getPowerState().then((state) => {console.log(state)})
         device.setPowerState(true)
         });
         break;
     case "turn_off":
-        const plug = tp_link.getDevice({host: devices.list[0].host}).then((device)=>{
+        tp_link.getDevice({host: devices.list[0].host}).then((device)=>{
         //device.getPowerState().then((state) => {console.log(state)})
         device.setPowerState(false)
         });
