@@ -7,6 +7,7 @@ import time
 
 import sys
 
+print("Sending...")
 device_id = int(sys.argv[len(sys.argv)-1])
 command_name = sys.argv[len(sys.argv)-2]
 
